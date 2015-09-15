@@ -70,7 +70,6 @@ const ERRORS = {
 
 class HeadingsPlugin extends Plugin {
     getTitle() {
-	this.analyze();
         return "Headings";
     }
 
@@ -79,56 +78,55 @@ class HeadingsPlugin extends Plugin {
     }
 
     run() {
-	this.errors.map((error) => {
-		// Register an error to the info panel
-		let infoPanelError = this.error(
-						error.title,
-						$(error.description),
-						error.el);
-		// Place an error label on the heading tag
-		annotate.errorLabel(
-				    error.el,
-				    error.text,
-				    error.title,
-				    error.description);
-	    });
-
+        this.errors.map((error) => {
+                // Register an error to the info panel
+                let infoPanelError = this.error(
+                                                error.title,
+                                                $(error.description),
+                                                error.el);
+                // Place an error label on the heading tag
+                annotate.errorLabel(
+                                    error.el,
+                                    error.text,
+                                    error.title,
+                                    error.description);
+            });
     }
 
     // Produce a list of errors for plugin
     analyze() {
         let $headings = $("h1, h2, h3, h4, h5, h6");
-	let errors = [];
+        let errors = [];
 
         let prevLevel;
         $headings.each((i, el) => {
-		let $el = $(el);
-		let error_dict = {};
+                let $el = $(el);
+                let error_dict = {};
 
-		let level = +$el.prop("tagName").slice(1);
-		let error;
+                let level = +$el.prop("tagName").slice(1);
+                let error;
 
-		// Check for any violations
-		// NOTE: These violations do not overlap, but as we add more, we
-		// may want to separate the conditionals here to report multiple
-		// errors on the same tag.
-		if (i === 0 && level !== 1) {
-		    error = ERRORS.FIRST_NOT_H1(level);                         // eslint-disable-line new-cap
-		} else if (prevLevel && level - prevLevel > 1) {
-		    error = ERRORS.NONCONSECUTIVE_HEADER(prevLevel, level);     // eslint-disable-line new-cap
-		}
+                // Check for any violations
+                // NOTE: These violations do not overlap, but as we add more, we
+                // may want to separate the conditionals here to report multiple
+                // errors on the same tag.
+                if (i === 0 && level !== 1) {
+                    error = ERRORS.FIRST_NOT_H1(level);                         // eslint-disable-line new-cap
+                } else if (prevLevel && level - prevLevel > 1) {
+                    error = ERRORS.NONCONSECUTIVE_HEADER(prevLevel, level);     // eslint-disable-line new-cap
+                }
 
-		prevLevel = level;
-		if (error) {
-		    error_dict = {
-			el: $el,
-			text: $el.prop("tagName").toLowerCase(),
-			title: error.title,
-			description: $(error.description)
-		    }
-		    errors.push(error_dict);
-		}
-	    });
+                prevLevel = level;
+                if (error) {
+                    error_dict = {
+                        el: $el,
+                        text: $el.prop("tagName").toLowerCase(),
+                        title: error.title,
+                        description: $(error.description)
+                    }
+                    errors.push(error_dict);
+                }
+            });
         return errors;
     }
 
