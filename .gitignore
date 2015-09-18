@@ -2,3 +2,7 @@ node_modules/
 tota11y/
 
 npm-debug.log
+
+# Byte-compiled / optimized / DLL files
+*.py[cod]
+*~
