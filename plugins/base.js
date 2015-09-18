@@ -64,6 +64,13 @@ class Plugin {
             clickHandler(this);
         });
 
+        let error = $plugin.find(".errors");
+        if (this.errors.length > 0) {            
+            error.addClass("tota11y-plugin-errors-exist");
+        } else {
+            error.addClass("tota11y-plugin-no-errors");
+        }
+
         return $plugin;
     }
 
