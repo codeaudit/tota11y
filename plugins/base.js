@@ -14,9 +14,11 @@ let InfoPanel = require("./shared/info-panel");
 let template = require("../templates/plugin.handlebars");
 
 class Plugin {
-    constructor() {
+    constructor(optionalParameters) {
         this.panel = new InfoPanel(this.getTitle());
         this.$checkbox = null;
+	this.optionalParameters = optionalParameters;
+	this.errors = this.analyze();
     }
 
     getTitle() {
@@ -29,21 +31,20 @@ class Plugin {
 
     /**
      * Methods that communicate directly with the info panel
-     * TODO: Consider names like `setSummary` and `addError`
      */
 
     // Populates the info panel's "Summary" tab
-    summary($html) {
+    setSummary($html) {
         return this.panel.setSummary($html);
     }
 
     // Populates the info panel's "About" tab
-    about($html) {
+    setAbout($html) {
         return this.panel.setAbout($html);
     }
 
     // Adds an entry to the info panel's "Errors" tab
-    error(title, $description, $el) {
+    addError(title, $description, $el) {
         return this.panel.addError(title, $description, $el);
     }
 
@@ -57,7 +58,6 @@ class Plugin {
         };
 
         let $plugin = $(template(templateData));
-
         this.$checkbox = $plugin.find(".tota11y-plugin-checkbox");
         this.$checkbox.click((e) => {
             e.stopPropagation();
@@ -68,10 +68,28 @@ class Plugin {
     }
 
     /**
+     * Populate panel with errors. 
+     * TODO: add summary
+     */
+    preparePanelForRender() {
+        this.errors.map((error) => {
+                // Register an error to the info panel
+                this.addError(error.title,
+                              $(error.description),
+                              $(error.el));
+            });
+    }
+
+    annotateDOM() {
+        return;
+    }
+
+    /**
      * Activate the plugin from the UI.
      */
     activate() {
-        this.run();
+        this.preparePanelForRender();
+        this.annotateDOM();
         this.panel.render();
     }
 
@@ -86,6 +104,9 @@ class Plugin {
         // unchecked. If another plugin becomes active, however, this method
         // will be called and will uncheck the checkbox.
         this.$checkbox.attr("checked", false);
+    }
+
+    cleanup() {
     }
 }
 
