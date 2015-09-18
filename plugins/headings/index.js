@@ -77,16 +77,10 @@ class HeadingsPlugin extends Plugin {
         return "Highlights headings (<h1>, <h2>, etc) and order violations";
     }
 
-    run() {
+    annotateDOM() {
         this.errors.map((error) => {
-                // Register an error to the info panel
-                let infoPanelError = this.error(
-                                                error.title,
-                                                $(error.description),
-                                                error.el);
                 // Place an error label on the heading tag
-                annotate.errorLabel(
-                                    error.el,
+                annotate.errorLabel(error.el,
                                     error.text,
                                     error.title,
                                     error.description);

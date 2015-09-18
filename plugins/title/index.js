@@ -35,15 +35,6 @@ class TitlePlugin extends Plugin {
         return "Title Violations";
     }
 
-    run() {
-        this.errors.map((error) => {
-                // Register an error to the info panel
-                this.error(error.title,
-                           $(error.description),
-                           $(error.el));
-            });
-    }
-
     analyze() {
         let $titles = $("title");
         let errors = [];
@@ -62,8 +53,6 @@ class TitlePlugin extends Plugin {
         return errors;
     }
 
-    cleanup() {
-    }
 }
 
 module.exports = TitlePlugin;

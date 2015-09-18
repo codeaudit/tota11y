@@ -9,7 +9,7 @@
  * Released under the MIT license
  * http://github.com/Khan/tota11y/blob/master/LICENSE.txt
  * 
- * Date: 2015-09-14
+ * Date: 2015-09-18
  * 
  */
 /******/ (function(modules) { // webpackBootstrap
@@ -84,17 +84,20 @@
 	// Chrome Accessibility Developer Tools - required once as a global
 	__webpack_require__(/*! script!./~/accessibility-developer-tools/dist/js/axs_testing.js */ 39);
 
+	// pluginParameters Allows us to pass various parameters from a user interface
+	// (e.g., what screen size, or which SEO terms to optimize for) to each plugin.
+
 	var Toolbar = (function () {
-	    function Toolbar(inputData) {
+	    function Toolbar(pluginParameters) {
 	        var _this = this;
 
 	        _classCallCheck(this, Toolbar);
 
 	        this.activePlugin = null;
-	        this.inputData = inputData;
+	        this.pluginParameters = pluginParameters;
 	        this.plugins = [];
 	        plugins["default"].map(function (plugin) {
-	            _this.plugins.push(new plugin(inputData));
+	            _this.plugins.push(new plugin(pluginParameters));
 	        });
 	    }
 
@@ -9919,7 +9922,6 @@
 	    _createClass(HeadingsPlugin, [{
 	        key: "getTitle",
 	        value: function getTitle() {
-	            this.analyze();
 	            return "Headings";
 	        }
 	    }, {
@@ -9934,7 +9936,7 @@
 
 	            this.errors.map(function (error) {
 	                // Register an error to the info panel
-	                var infoPanelError = _this.error(error.title, $(error.description), error.el);
+	                var infoPanelError = _this.panel.addError(error.title, $(error.description), error.el);
 	                // Place an error label on the heading tag
 	                annotate.errorLabel(error.el, error.text, error.title, error.description);
 	            });
@@ -10019,13 +10021,12 @@
 	var template = __webpack_require__(/*! ../templates/plugin.handlebars */ 30);
 
 	var Plugin = (function () {
-	    function Plugin(inputData) {
+	    function Plugin(optionalParameters) {
 	        _classCallCheck(this, Plugin);
 
 	        this.panel = new InfoPanel(this.getTitle());
 	        this.$checkbox = null;
-	        this.input = null;
-	        this.inputData = inputData;
+	        this.optionalParameters = optionalParameters;
 	        this.errors = this.analyze();
 	    }
 
@@ -10038,11 +10039,6 @@
 	        key: "getDescription",
 	        value: function getDescription() {
 	            return "";
-	        }
-	    }, {
-	        key: "addInput",
-	        value: function addInput(input) {
-	            this.input = input;
 	        }
 
 	        /**
@@ -10085,7 +10081,7 @@
 	            };
 
 	            var $plugin = $(template(templateData));
-
+	            console.log('shit mofo');
 	            this.$checkbox = $plugin.find(".tota11y-plugin-checkbox");
 	            this.$checkbox.click(function (e) {
 	                e.stopPropagation();
@@ -11739,81 +11735,78 @@
 	__webpack_require__(/*! ./style.less */ 36);
 
 	var ERRORS = {
-					MULTIPLE_TITLES: function MULTIPLE_TITLES(titles) {
-									var _tag = function _tag(level) {
-													return "<code>" + level + "</code>";
-									};
-									var description = "\n\t<div>This document contains multiple <code>&lt;title&gt;</code> tags ";
+	    MULTIPLE_TITLES: function MULTIPLE_TITLES(titles) {
+	        var _tag = function _tag(tag_var) {
+	            return "<code>" + tag_var + "</code>";
+	        };
+	        var description = "\n        <div>This document contains multiple <code>&lt;title&gt;</code> tags ";
 
-									titles.each(function (i, title) {
-													description += _tag($(title).text());
-													if (i < titles.length - 1) {
-																	description += ', ';
-													}
-									});
-									description += "</div>";
-									return {
-													title: "Multiple &lt;title&gt; tags provided",
-													description: description
-									};
-					}
+	        titles.each(function (i, title) {
+	            description += _tag($(title).text());
+	            if (i < titles.length - 1) {
+	                description += ', ';
+	            }
+	        });
+	        description += "</div>";
+	        return { title: "Multiple &lt;title&gt; tags provided",
+	            description: description };
+	    }
 	};
 
 	var TitlePlugin = (function (_Plugin) {
-					_inherits(TitlePlugin, _Plugin);
+	    _inherits(TitlePlugin, _Plugin);
 
-					function TitlePlugin(inputData) {
-									_classCallCheck(this, TitlePlugin);
+	    function TitlePlugin() {
+	        _classCallCheck(this, TitlePlugin);
 
-									_get(Object.getPrototypeOf(TitlePlugin.prototype), "constructor", this).call(this, inputData);
-					}
+	        _get(Object.getPrototypeOf(TitlePlugin.prototype), "constructor", this).apply(this, arguments);
+	    }
 
-					_createClass(TitlePlugin, [{
-									key: "getTitle",
-									value: function getTitle() {
-													return "Title";
-									}
-					}, {
-									key: "getDescription",
-									value: function getDescription() {
-													return "Title Violations";
-									}
-					}, {
-									key: "run",
-									value: function run() {
-													var _this = this;
+	    _createClass(TitlePlugin, [{
+	        key: "getTitle",
+	        value: function getTitle() {
+	            return "Title";
+	        }
+	    }, {
+	        key: "getDescription",
+	        value: function getDescription() {
+	            return "Title Violations";
+	        }
+	    }, {
+	        key: "run",
+	        value: function run() {
+	            var _this = this;
 
-													this.errors.map(function (error) {
-																	// Register an error to the info panel
-																	_this.error(error.title, $(error.description), $(error.el));
-													});
-									}
-					}, {
-									key: "analyze",
-									value: function analyze() {
-													var $titles = $("title");
-													var errors = [];
-													var error = undefined;
-													if ($titles.length > 1) {
-																	error = ERRORS.MULTIPLE_TITLES($titles); // eslint-disable-line new-cap
-													}
+	            this.errors.map(function (error) {
+	                // Register an error to the info panel
+	                _this.error(error.title, $(error.description), $(error.el));
+	            });
+	        }
+	    }, {
+	        key: "analyze",
+	        value: function analyze() {
+	            var $titles = $("title");
+	            var errors = [];
+	            var error = undefined;
+	            if ($titles.length > 1) {
+	                error = ERRORS.MULTIPLE_TITLES($titles); // eslint-disable-line new-cap
+	            }
 
-													if (error) {
-																	// Register an error to the info panel
-																	errors = [{
-																					title: error.title,
-																					description: $(error.description),
-																					el: $titles[0]
-																	}];
-													}
-													return errors;
-									}
-					}, {
-									key: "cleanup",
-									value: function cleanup() {}
-					}]);
+	            if (error) {
+	                // Register an error to the info panel
+	                errors = [{ title: error.title,
+	                    description: $(error.description),
+	                    el: $titles[0]
+	                }];
+	            }
+	            return errors;
+	        }
+	    }, {
+	        key: "cleanup",
+	        value: function cleanup() {}
+	    }]);
 
-					return TitlePlugin;
+	    return TitlePlugin;
 	})(Plugin);
 
 	module.exports = TitlePlugin;
@@ -11893,7 +11886,7 @@
   \**********************************************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(/*! !./~/script-loader/addScript.js */ 40)(__webpack_require__(/*! !./~/script-loader/~/raw-loader!./~/accessibility-developer-tools/dist/js/axs_testing.js */ 41)+"\n\n// SCRIPT-LOADER FOOTER\n//# sourceURL=script:///Users/kkamalov/workspace/unlim_tota11y/node_modules/accessibility-developer-tools/dist/js/axs_testing.js")
+	__webpack_require__(/*! !./~/script-loader/addScript.js */ 40)(__webpack_require__(/*! !./~/script-loader/~/raw-loader!./~/accessibility-developer-tools/dist/js/axs_testing.js */ 41)+"\n\n// SCRIPT-LOADER FOOTER\n//# sourceURL=script:///Users/kkamalov/workspace/tota11y/node_modules/accessibility-developer-tools/dist/js/axs_testing.js")
 
 /***/ },
 /* 40 */
