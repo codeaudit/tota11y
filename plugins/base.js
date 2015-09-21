@@ -18,7 +18,6 @@ class Plugin {
         this.panel = new InfoPanel(this.getTitle());
         this.$checkbox = null;
 	this.optionalParameters = optionalParameters;
-	this.errors = this.analyze();
     }
 
     getTitle() {
@@ -27,6 +26,10 @@ class Plugin {
 
     getDescription() {
         return "";
+    }
+
+    addErrors(errors) {
+        this.errors = errors;
     }
 
     /**

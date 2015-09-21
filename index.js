@@ -22,9 +22,20 @@ class Toolbar {
         this.activePlugin = null;
         this.pluginParameters = pluginParameters;
         this.plugins = [];
-        plugins.default.map((plugin) => {
-                this.plugins.push(new plugin(pluginParameters));
-            });
+        let allErrors = []
+            plugins.default.map((plugin) => {
+                    let newPlugin = new plugin(pluginParameters);
+                    let errors = newPlugin.analyze();
+                    newPlugin.addErrors(errors);
+                    this.plugins.push(newPlugin);
+
+                    // add errors to the overview.
+                    allErrors = allErrors.concat(errors);
+
+                });
+        let overviewPlugin = new plugins.overview(pluginParameters);
+        overviewPlugin.addErrors(allErrors);
+        this.plugins.unshift(overviewPlugin);
     }
 
     /**
@@ -70,6 +81,10 @@ class Toolbar {
             e.preventDefault();
             e.stopPropagation();
             $toolbar.toggleClass("tota11y-expanded");
+
+            // expand overview plugin
+            this.handlePluginClick(this.plugins[0]);
+            this.plugins[0].$checkbox.attr("checked", true);            
         };
 
         let $toggle = (
