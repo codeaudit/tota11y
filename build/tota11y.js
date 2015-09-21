@@ -9,7 +9,7 @@
  * Released under the MIT license
  * http://github.com/Khan/tota11y/blob/master/LICENSE.txt
  * 
- * Date: 2015-09-18
+ * Date: 2015-09-21
  * 
  */
 /******/ (function(modules) { // webpackBootstrap
@@ -187,9 +187,7 @@
 	$(function () {
 	    // Attach the global `axs` object from Accessibility Developer Tools to $
 	    $.axs = axs;
-
 	    var bar = new Toolbar({});
-
 	    // TODO: Make this customizable
 	    bar.appendTo($("body"));
 	});
@@ -9526,7 +9524,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(/*! ./../~/css-loader/lib/css-base.js */ 7)();
-	exports.push([module.id, ".tota11y-dark-color-scheme {\n  background-color: #333333 !important;\n  color: #f2f2f2 !important;\n}\n.tota11y-no-select {\n  -webkit-user-select: none !important;\n     -moz-user-select: none !important;\n      -ms-user-select: none !important;\n          user-select: none !important;\n}\n/**\n * Base styles for tota11y to make sure things look consistent under\n * reasonable circumstances.\n */\n.tota11y,\n.tota11y * {\n  border: none !important;\n  box-sizing: border-box !important;\n  color: #f2f2f2 !important;\n  font-family: Arial !important;\n  font-size: 14px !important;\n  font-style: normal !important;\n  font-weight: 400 !important;\n  line-height: 1.35 !important;\n  margin: 0 !important;\n  padding: 0 !important;\n  text-align: left !important;\n  text-shadow: none !important;\n}\n.tota11y * {\n  height: auto !important;\n  width: auto !important;\n}\n.tota11y strong {\n  font-weight: bold !important;\n}\n.tota11y pre,\n.tota11y code {\n  background-color: #dddddd !important;\n  border: none !important;\n  border-radius: 0 !important;\n  color: inherit !important;\n  font-family: monospace !important;\n  font-size: inherit !important;\n  line-height: inherit !important;\n}\n.tota11y pre {\n  padding: 10px !important;\n  margin: 0 0 10px !important;\n  overflow-x: scroll !important;\n}\n.tota11y code {\n  border-radius: 2px !important;\n  display: inline !important;\n  padding: 1px !important;\n}\n.tota11y i,\n.tota11y em {\n  font-style: italic !important;\n}\n.tota11y p {\n  margin: 0 0 10px !important;\n}\n.tota11y a,\n.tota11y a:hover,\n.tota11y a:focus {\n  background-color: inherit !important;\n  color: inherit !important;\n  text-decoration: none !important;\n}\n.tota11y-toolbar {\n  background-color: #333333 !important;\n  color: #f2f2f2 !important;\n  position: fixed !important;\n  top: auto !important;\n  right: auto !important;\n  bottom: 0 !important;\n  left: 10px !important;\n  border-top-left-radius: 5px !important;\n  border-top-right-radius: 5px !important;\n  overflow: hidden !important;\n  z-index: 9998 !important;\n}\n.tota11y-toolbar-toggle {\n  display: block !important;\n  padding: 7px !important;\n}\n.tota11y-toolbar-logo {\n  height: 25px !important;\n  margin: 0 auto !important;\n  text-align: center !important;\n  width: 35px !important;\n}\n.tota11y-toolbar-logo svg {\n  height: 25px !important;\n}\n.tota11y-toolbar-body {\n  display: none !important;\n}\n.tota11y-toolbar.tota11y-expanded .tota11y-toolbar-body {\n  display: block !important;\n}\n.tota11y-plugins-separator {\n  font-size: 12px !important;\n  margin: 7px 15px 0 !important;\n  text-transform: uppercase !important;\n}\n.tota11y-plugin {\n  -webkit-user-select: none !important;\n     -moz-user-select: none !important;\n      -ms-user-select: none !important;\n          user-select: none !important;\n  border-bottom: 1px solid #555555 !important;\n}\n.tota11y-plugin-label {\n  -webkit-box-align: center !important;\n  -webkit-align-items: center !important;\n      -ms-flex-align: center !important;\n          align-items: center !important;\n  display: -webkit-box !important;\n  display: -webkit-flex !important;\n  display: -ms-flexbox !important;\n  display: flex !important;\n  padding: 12px 12px 12px 0 !important;\n  margin: 0 !important;\n}\n.tota11y-plugin-label:hover {\n  cursor: pointer !important;\n}\n.tota11y-plugin-control {\n  margin: 0 15px !important;\n}\n.tota11y-plugin-checkbox {\n  display: none !important;\n}\n.tota11y-plugin-indicator {\n  border-radius: 16px !important;\n  border: 1px solid #999999 !important;\n  color: transparent !important;\n  font-size: 13px !important;\n  height: 16px !important;\n  line-height: 16px !important;\n  padding: 0 0 0 1px !important;\n  width: 16px !important;\n}\n.tota11y-plugin-checkbox:checked + .tota11y-plugin-indicator {\n  background-color: #639b24 !important;\n  border-color: #639b24 !important;\n  color: white !important;\n}\n.tota11y-plugin-title {\n  font-weight: bold !important;\n}\n.tota11y-plugin-description {\n  font-size: 11px !important;\n  font-style: italic !important;\n  width: 200px !important;\n  margin-right: 3px !important;\n}\n", ""]);
+	exports.push([module.id, ".tota11y-dark-color-scheme {\n  background-color: #333333 !important;\n  color: #f2f2f2 !important;\n}\n.tota11y-no-select {\n  -webkit-user-select: none !important;\n     -moz-user-select: none !important;\n      -ms-user-select: none !important;\n          user-select: none !important;\n}\n/**\n * Base styles for tota11y to make sure things look consistent under\n * reasonable circumstances.\n */\n.tota11y,\n.tota11y * {\n  border: none !important;\n  box-sizing: border-box !important;\n  color: #f2f2f2 !important;\n  font-family: Arial !important;\n  font-size: 14px !important;\n  font-style: normal !important;\n  font-weight: 400 !important;\n  line-height: 1.35 !important;\n  margin: 0 !important;\n  padding: 0 !important;\n  text-align: left !important;\n  text-shadow: none !important;\n}\n.tota11y * {\n  height: auto !important;\n  width: auto !important;\n}\n.tota11y strong {\n  font-weight: bold !important;\n}\n.tota11y pre,\n.tota11y code {\n  background-color: #dddddd !important;\n  border: none !important;\n  border-radius: 0 !important;\n  color: inherit !important;\n  font-family: monospace !important;\n  font-size: inherit !important;\n  line-height: inherit !important;\n}\n.tota11y pre {\n  padding: 10px !important;\n  margin: 0 0 10px !important;\n  overflow-x: scroll !important;\n}\n.tota11y code {\n  border-radius: 2px !important;\n  display: inline !important;\n  padding: 1px !important;\n}\n.tota11y i,\n.tota11y em {\n  font-style: italic !important;\n}\n.tota11y p {\n  margin: 0 0 10px !important;\n}\n.tota11y a,\n.tota11y a:hover,\n.tota11y a:focus {\n  background-color: inherit !important;\n  color: inherit !important;\n  text-decoration: none !important;\n}\n.tota11y-toolbar {\n  background-color: #333333 !important;\n  color: #f2f2f2 !important;\n  position: fixed !important;\n  top: auto !important;\n  right: auto !important;\n  bottom: 0 !important;\n  left: 10px !important;\n  border-top-left-radius: 5px !important;\n  border-top-right-radius: 5px !important;\n  overflow: hidden !important;\n  z-index: 9998 !important;\n}\n.tota11y-toolbar-toggle {\n  display: block !important;\n  padding: 7px !important;\n}\n.tota11y-toolbar-logo {\n  height: 25px !important;\n  margin: 0 auto !important;\n  text-align: center !important;\n  width: 35px !important;\n}\n.tota11y-toolbar-logo svg {\n  height: 25px !important;\n}\n.tota11y-toolbar-body {\n  display: none !important;\n}\n.tota11y-toolbar.tota11y-expanded .tota11y-toolbar-body {\n  display: block !important;\n}\n.tota11y-plugins-separator {\n  font-size: 12px !important;\n  margin: 7px 15px 0 !important;\n  text-transform: uppercase !important;\n}\n.tota11y-plugin {\n  -webkit-user-select: none !important;\n     -moz-user-select: none !important;\n      -ms-user-select: none !important;\n          user-select: none !important;\n  border-bottom: 1px solid #555555 !important;\n}\n.tota11y-plugin-label {\n  -webkit-box-align: center !important;\n  -webkit-align-items: center !important;\n      -ms-flex-align: center !important;\n          align-items: center !important;\n  display: -webkit-box !important;\n  display: -webkit-flex !important;\n  display: -ms-flexbox !important;\n  display: flex !important;\n  padding: 12px 12px 12px 0 !important;\n  margin: 0 !important;\n}\n.tota11y-plugin-label:hover {\n  cursor: pointer !important;\n}\n.tota11y-plugin-control {\n  margin: 0 15px !important;\n  width: 20px !important;\n}\n.tota11y-plugin-checkbox {\n  display: none !important;\n}\n.tota11y-plugin-indicator {\n  border-radius: 16px !important;\n  border: 1px solid #999999 !important;\n  color: transparent !important;\n  font-size: 13px !important;\n  height: 16px !important;\n  line-height: 16px !important;\n  width: 16px !important;\n}\n.tota11y-plugin-checkbox:checked + .tota11y-plugin-indicator {\n  background-color: #555555 !important;\n  border-color: #555555 !important;\n  color: white !important;\n}\n.tota11y-plugin-no-errors {\n  color: #333333 !important;\n}\n.tota11y-plugin-errors-exist {\n  border-radius: 16px !important;\n  border: 1px solid #999999 !important;\n  color: transparent !important;\n  font-size: 13px !important;\n  height: 16px !important;\n  line-height: 16px !important;\n  padding: 0 0 0 2px !important;\n  width: 16px !important;\n  background-color: #ff0000 !important;\n  border-color: #ff0000 !important;\n  color: white !important;\n}\n.tota11y-plugin-title {\n  font-weight: bold !important;\n}\n.tota11y-plugin-description {\n  font-size: 11px !important;\n  font-style: italic !important;\n  width: 200px !important;\n  margin-right: 3px !important;\n}\n", ""]);
 
 /***/ },
 /* 7 */
@@ -9930,13 +9928,9 @@
 	            return "Highlights headings (<h1>, <h2>, etc) and order violations";
 	        }
 	    }, {
-	        key: "run",
-	        value: function run() {
-	            var _this = this;
-
+	        key: "annotateDOM",
+	        value: function annotateDOM() {
 	            this.errors.map(function (error) {
-	                // Register an error to the info panel
-	                var infoPanelError = _this.panel.addError(error.title, $(error.description), error.el);
 	                // Place an error label on the heading tag
 	                annotate.errorLabel(error.el, error.text, error.title, error.description);
 	            });
@@ -10043,27 +10037,26 @@
 
 	        /**
 	         * Methods that communicate directly with the info panel
-	         * TODO: Consider names like `setSummary` and `addError`
 	         */
 
 	        // Populates the info panel's "Summary" tab
 	    }, {
-	        key: "summary",
-	        value: function summary($html) {
+	        key: "setSummary",
+	        value: function setSummary($html) {
 	            return this.panel.setSummary($html);
 	        }
 
 	        // Populates the info panel's "About" tab
 	    }, {
-	        key: "about",
-	        value: function about($html) {
+	        key: "setAbout",
+	        value: function setAbout($html) {
 	            return this.panel.setAbout($html);
 	        }
 
 	        // Adds an entry to the info panel's "Errors" tab
 	    }, {
-	        key: "error",
-	        value: function error(title, $description, $el) {
+	        key: "addError",
+	        value: function addError(title, $description, $el) {
 	            return this.panel.addError(title, $description, $el);
 	        }
 
@@ -10081,14 +10074,40 @@
 	            };
 
 	            var $plugin = $(template(templateData));
-	            console.log('shit mofo');
 	            this.$checkbox = $plugin.find(".tota11y-plugin-checkbox");
 	            this.$checkbox.click(function (e) {
 	                e.stopPropagation();
 	                clickHandler(_this);
 	            });
 
+	            var error = $plugin.find(".errors");
+	            if (this.errors.length > 0) {
+	                error.addClass("tota11y-plugin-errors-exist");
+	            } else {
+	                error.addClass("tota11y-plugin-no-errors");
+	            }
+
 	            return $plugin;
+	        }
+
+	        /**
+	         * Populate panel with errors. 
+	         * TODO: add summary
+	         */
+	    }, {
+	        key: "preparePanelForRender",
+	        value: function preparePanelForRender() {
+	            var _this2 = this;
+
+	            this.errors.map(function (error) {
+	                // Register an error to the info panel
+	                _this2.addError(error.title, $(error.description), $(error.el));
+	            });
+	        }
+	    }, {
+	        key: "annotateDOM",
+	        value: function annotateDOM() {
+	            return;
 	        }
 
 	        /**
@@ -10097,7 +10116,8 @@
 	    }, {
 	        key: "activate",
 	        value: function activate() {
-	            this.run();
+	            this.preparePanelForRender();
+	            this.annotateDOM();
 	            this.panel.render();
 	        }
 
@@ -10115,6 +10135,9 @@
 	            // will be called and will uncheck the checkbox.
 	            this.$checkbox.attr("checked", false);
 	        }
+	    }, {
+	        key: "cleanup",
+	        value: function cleanup() {}
 	    }]);
 
 	    return Plugin;
@@ -11644,11 +11667,11 @@
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
 	    var helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
 
-	  return "<div class=\"tota11y-plugin\">\n    <label class=\"tota11y-plugin-label\">\n        <div class=\"tota11y-plugin-control\">\n            <input type=\"checkbox\" class=\"tota11y-plugin-checkbox\" />\n            <div class=\"tota11y-plugin-indicator\">&#x2713;</div>\n        </div>\n        <div class=\"tota11y-plugin-info\">\n            <div class=\"tota11y-plugin-title\">"
+	  return "<div class=\"tota11y-plugin\">\n    <label class=\"tota11y-plugin-label\">\n        <div class=\"tota11y-plugin-control\">\n            <div class=\"errors\">\n              &#x2717;\n            </div>\n        </div>\n        <div class=\"tota11y-plugin-info\">\n            <div class=\"tota11y-plugin-title\">"
 	    + alias3(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"title","hash":{},"data":data}) : helper)))
 	    + "</div>\n            <div class=\"tota11y-plugin-description\">"
 	    + alias3(((helper = (helper = helpers.description || (depth0 != null ? depth0.description : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"description","hash":{},"data":data}) : helper)))
-	    + "</div>\n        </div>\n    </label>\n</div>\n";
+	    + "</div>\n        </div>\n        <div class=\"tota11y-plugin-control\">\n            <input type=\"checkbox\" class=\"tota11y-plugin-checkbox\" />\n            <div class=\"tota11y-plugin-indicator\"></div>\n        </div>\n    </label>\n</div>\n";
 	},"useData":true});
 
 /***/ },
@@ -11773,16 +11796,6 @@
 	            return "Title Violations";
 	        }
 	    }, {
-	        key: "run",
-	        value: function run() {
-	            var _this = this;
-
-	            this.errors.map(function (error) {
-	                // Register an error to the info panel
-	                _this.error(error.title, $(error.description), $(error.el));
-	            });
-	        }
-	    }, {
 	        key: "analyze",
 	        value: function analyze() {
 	            var $titles = $("title");
@@ -11801,9 +11814,6 @@
 	            }
 	            return errors;
 	        }
-	    }, {
-	        key: "cleanup",
-	        value: function cleanup() {}
 	    }]);
 
 	    return TitlePlugin;
