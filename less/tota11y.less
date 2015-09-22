@@ -69,6 +69,7 @@
 
     &-control {
         margin: 0 @controlMargin;
+        width: 20px;
     }
 
     &-checkbox {
@@ -82,12 +83,33 @@
         font-size: @indicatorFontSize;
         height: @indicatorSize;
         line-height: @indicatorSize;
-        padding: 0 0 0 1px;
         width: @indicatorSize;
+
     }
+
     &-checkbox:checked + &-indicator {
-        background-color: @kaGreen;
-        border-color: @kaGreen;
+        background-color: @gray;
+        border-color: @gray;
+        color: white;
+
+    }
+
+    &-no-errors {
+        color: @darkGray;
+    }
+
+    &-errors-exist {
+        border-radius: @indicatorSize;
+        border: 1px solid @lightBorderColor;
+        color: transparent;
+        font-size: @indicatorFontSize;
+        height: @indicatorSize;
+        line-height: @indicatorSize;
+        padding: 0 0 0 2px;
+        width: @indicatorSize;
+
+        background-color: @kaRed;
+        border-color: @kaRed;
         color: white;
     }
 
